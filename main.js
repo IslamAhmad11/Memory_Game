@@ -1,77 +1,46 @@
-let slideNum = document.querySelector(".slide-num");
-let imgs = document.querySelectorAll("img");
-let prev = document.querySelector(".prev");
-let indicators = document.querySelector(".indicators");
-let next = document.querySelector(".next");
-let ul = document.createElement("ul");
+let input = document.querySelector(".container input");
+let button = document.querySelector(".container button");
+let showData = document.querySelector(".container .show-data");
 
-for(let i = 1; i <= imgs.length; i++){
-    let bullet = document.createElement("li");
-    bullet.innerHTML=`${i}`;
-    ul.appendChild(bullet);
-    indicators.appendChild(ul);
-}
+button.onclick = () => {
 
-let lis = Array.from(document.querySelectorAll("ul li"));
-let currentSlide = 1;
+    if(input.value == ""){
 
-// set default values
-function theChecker(){
-    slideNum.innerHTML = `Slide #${currentSlide} Of ${imgs.length}`;
-    removeActiveClass();
-    imgs[currentSlide - 1].classList.add("active");
-    lis[currentSlide - 1].classList.add("active");
-    
-    // remove active on orev button
-    if(currentSlide == 1){
-        prev.classList.add("disabled");
+        showData.innerHTML = "Please Write a Github Username";
+
     }else{
-        prev.classList.remove("disabled");
-    }
 
-    // remove active on next button
-    if(currentSlide == imgs.length){
-        next.classList.add("disabled");
-    }else{
-        next.classList.remove("disabled");
-    }
+        fetch(`https://api.github.com/users/${input.value}/repos`)
+        
+        .then( (response) => {
 
-}
+            return response.json();
 
-theChecker();
+        }).then((repos) => {
 
-function removeActiveClass(){
-    // remove active class on imgs
-    imgs.forEach((img) => {
-        img.classList.remove("active");
-    })
-    // remove active class on bullets
-    lis.forEach((li) => {
-        li.classList.remove("active");
-    })
-}
+            showData.innerHTML="";
 
-next.onclick = () => {
-    if(next.classList.contains("disabled")){
-        return false;
-    }else{
-        currentSlide++;
-        theChecker();
-    }
-}
+            repos.forEach(repo => {
 
-prev.onclick = () => {
-    if(prev.classList.contains("disabled")){
-        return false;
-    }else{
-        currentSlide--;
-        theChecker();
+                let mainDiv = document.createElement("div");
+                let repoName = document.createTextNode(repo.name);
+                let theUrl = document.createElement("a");
+                let urlText = document.createTextNode("Visit");
+                let stars = document.createElement("span");
+                
+                theUrl.href = `https://github.com/${input.value}/${repo.name}`;
+                theUrl.setAttribute("target", "_blank")
+                theUrl.appendChild(urlText);
+
+                stars.innerHTML = `${repo.stargazers_count} stars`
+
+                mainDiv.appendChild(repoName);
+                mainDiv.appendChild(theUrl);
+                mainDiv.appendChild(stars);
+                mainDiv.className = "repo-box";
+
+                showData.appendChild(mainDiv);
+            });
+        })
     }
 }
-
-lis.forEach((li) => {
-    li.onclick = () => {
-        currentSlide = parseInt(li.innerHTML);
-        theChecker();
-    }
-})
