@@ -1,23 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="main.css">
-  <link rel="stylesheet" href="css/all.min.css">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <title>Document</title>
 </head>
-
 <body>
-  <div class="container">
-    <div class="get-repos">
-      <input type="text" placeholder="Github Username">
-      <button>Get Repos</button>
+    <div class="start-game">
+        <select>
+            <option>Select level</option> 
+            <option value="easy">Easy ( 2 minutes )</option>
+            <option value="normal">Normal ( 1.5 minute )</option>
+            <option value="hard">Hard ( 1 minute )</option>
+            </select>
+        <span></span>
+        <input type="text" placeholder="Please Enter Your Name" maxlength="30">
+        <button>Start Game</button>
     </div>
-    <div class="show-data">No Data To Show</div>
-  </div>
-  <script src="main.js"></script>
+    <div class="game-container">
+        <div class="info-container">
+            <button>Restart</button>
+            <div class="name">Hello <span></span></div>
+            <div class="tries">Tries: <span></span></div>
+            <div class="time">Seconds left <span></span></div>
+        </div>
+        <div class="blocks-container">
+            <div class="game-block" data-tech="apple">
+                <div class="face front"></div>
+                <div class="face back">
+                    <img src="images/apple.png" alt="apple">
+                </div>
+            </div>
+            <div class="game-block" data-tech="apple">
+                <div class="face front"></div>
+                <div class="face back">
+                    <img src="images/apple.png" alt="apple">
+                </div>
+            </div>
+            <div class="game-block" data-tech="banana">
+                <div class="face front"></div>
+                <div class="face back">
+                    <img src="images/banana.png" alt="banana">
+                </div>
+            </div>
+            <div class="game-block" data-tech="banana">
+                <div class="face front"></div>
+                <div class="face back">
+                    <img src="images/banana.png" alt="banana">
+                </div>
+            </div>
+            <div class="game-block" data-tech="grapes">
+                <div class="face front"></div>
+                <div class="face back">
+                    <img src="images/grapes.png" alt="grapes">
+                </div>
+            </div>
+            <div class="game-block" data-tech="grapes">
+                <div class="face front"></div>
+                <div class="face back">
+                    <img src="images/grapes.png" alt="grapes">
+                </div>
+            </div>
+            <div class="game-block" data-tech="kiwi">
+                <div class="face front"></div>
+                <div class="face back">
+                    <img src="images/kiwi.png" alt="kiwi">
+                </div>
+            </div>
+            <div class="game-block" data-tech="kiwi">
+                <div class="face front"></div>
+                <div class="face back">
+                    <img src="images/kiwi.png" alt="kiwi">
+                </div>
+            </div>
+            <div class="game-block" data-tech="lemon">
+                <div class="face front"></div>
+                <div class="face back">
+                    <img src="images/lemon.png" alt="lemon">
+                </div>
+            </div>
+            <div class="game-block" data-tech="lemon">
+                <div class="face front"></div>
+                <div class="face back">
+                    <img src="images/lemon.png" alt="lemon">
+                </div>
+            </div>
+            <div class="game-block" data-tech="orange">
+                <div class="face front"></div>
+                <div class="face back">
+                    <img src="images/orange.png" alt="orange">
+                </div>
+            </div>
+            <div class="game-block" data-tech="orange">
+                <div class="face front"></div>
+                <div class="face back">
+                    <img src="images/orange.png" alt="orange">
+                </div>
+            </div>
+            <div class="game-block" data-tech="pear">
+                <div class="face front"></div>
+                <div class="face back">
+                    <img src="images/pear.png" alt="pear">
+                </div>
+            </div>
+            <div class="game-block" data-tech="pear">
+                <div class="face front"></div>
+                <div class="face back">
+                    <img src="images/pear.png" alt="pear">
+                </div>
+            </div>
+            <div class="game-block" data-tech="pineapple">
+                <div class="face front"></div>
+                <div class="face back">
+                    <img src="images/pineapple.png" alt="pineapple">
+                </div>
+            </div>
+            <div class="game-block" data-tech="pineapple">
+                <div class="face front"></div>
+                <div class="face back">
+                    <img src="images/pineapple.png" alt="pineapple">
+                </div>
+            </div>
+            <div class="game-block" data-tech="strawberry">
+                <div class="face front"></div>
+                <div class="face back">
+                    <img src="images/strawberry.png" alt="strawberry">
+                </div>
+            </div>
+            <div class="game-block" data-tech="strawberry">
+                <div class="face front"></div>
+                <div class="face back">
+                    <img src="images/strawberry.png" alt="strawberry">
+                </div>
+            </div>
+        </div>
+        <div class="game-over">
+            <h1>Game Over</h1>
+        </div>
+        <div class="congrats">
+            <h1>Bravo <span></span></h1>
+        </div>
+        <audio id="opening" src="sounds/opening.mp3" preload="auto"></audio>
+        <audio id="success" src="sounds/success.mp3" preload="auto"></audio>
+        <audio id="congrats" src="sounds/congrats.mp3" preload="auto"></audio>
+        <audio id="game-over" src="sounds/game-over.mp3" preload="auto"></audio>
+    </div>
+    <script src="main.js"></script>
 </body>
-
-</html>
