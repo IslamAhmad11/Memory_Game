@@ -103,7 +103,7 @@ body{
 @media (min-width: 280px) and (max-width: 767px){
     .info-container{
         padding: 5px;
-        font-size: 12px;
+        font-size: 10px;
     }
 }
 .info-container button{
